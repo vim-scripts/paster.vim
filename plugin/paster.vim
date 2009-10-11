@@ -34,12 +34,23 @@
 " Andrew Lombardi       http://www.mysticcoders.com   kinabalu
 " Matt Wozniski         mjw@drexel.edu                godlygeek
 " Will Gray             graywh@gmail.com              graywh
+" Michael Jansen        http://michael-jansen.biz     n/a
 "
 " Special thanks to stepnem, iamjay_, jerbear, and other denizens of the
 " #vim channel (irc://irc.freenode.net/#vim)
 "
 " Version history:
 " ----------------
+" 20091011              1.2  Option to open a web browser after the paste
+"                            is posted to the pastebin site.  See the
+"                            paster-config.vim file for examples.  Set the
+"                            g:PASTER_BROWSER_COMMAND variable in .vimrc with
+"                            the command for opening the browser.
+"
+"                            Michael Jansen provided a pastey fix
+"                            and ideas for creating a browser interface
+"
+"
 " 20090425              1.1  Will Gray provided the configuration
 "                            for using pastey.net with paster.vim
 "
@@ -125,6 +136,14 @@ function! s:Paste2Clipboard(locator)
 endfunction
 
 
+function! s:OpenInBrowser(locator)
+  if exists('g:PASTER_BROWSER_COMMAND') && has('gui_running')
+    let command = g:PASTER_BROWSER_COMMAND.' '.a:locator
+    let x = system(command)  " x discarded; we don't care about its output.  Caveat user.
+  endif
+endfunction
+
+
 function! s:ExecutePaste(text)
   let command  = g:PASTER_COMMAND
   let command .= " ".g:PASTER_CONTROL
@@ -146,6 +165,7 @@ function! s:ExecutePaste(text)
       echomsg location
 
       let clipboardURL = split(location, " ")
+      call s:OpenInBrowser(clipboardURL[0x01])
       call s:Paste2Clipboard(clipboardURL[0x01])
 
       return

@@ -43,6 +43,30 @@
 
 " *** Configuration ***
 
+" *************** Browser command **************
+
+" The browser command will be invoked if the variable is set to anything
+" other than an empty string.  Potential values for this variable are:
+"
+" OS X:
+" let g:PASTER_BROWSER_COMMAND = 'open -a Firefox'
+" let g:PASTER_BROWSER_COMMAND = 'open -a Safari'
+"
+" UNIX/Linux/generic:
+" let g:PASTER_BROWSER_COMMAND = 'firefox'
+" let g:PASTER_BROWSER_COMMAND = 'konqueror'
+"
+" Windows:
+" let g:PASTER_BROWSER_COMMAND = 'start /NORMAL firefox.exe'
+" let g:PASTER_BROWSER_COMMAND = 'start /NORMAL iexplore.exe'
+"
+" Set the browser command in the $HOME/.vimrc or $HOME/.gvimrc file.
+"
+" (N.B. open -a is an OS X command; it's based on BSD open but the -a
+" switch appears to be specific to OS X 10.4 and later, for
+" applications.)
+
+
 " *************** Begin default configuration ********************
 
 " Default pastebin configuration for http://eugeneciurana.com/pastebin/ and 
@@ -75,18 +99,18 @@ let g:PASTER_RESPONSE_FLAG   = "^Location"
 
                                 " vim-filetype   pastebin-format
 let g:PASTER_SYNTAX_OPTIONS  = {   'awk':         'awk',
-                                \ 'sh':          'bash',
-                                \ 'c':           'c',
-                                \ 'cpp':         'cpp',
-                                \ 'html':        'html4strict',
-                                \ 'java':        'java',
-                                \ 'javascript':  'javascript',
-                                \ 'perl':        'perl',
-                                \ 'php':         'php',
-                                \ 'python':      'python',
-                                \ 'ruby':        'ruby',
-                                \
-                                \ 'default':     'text' }
+                                 \ 'sh':          'bash',
+                                 \ 'c':           'c',
+                                 \ 'cpp':         'cpp',
+                                 \ 'html':        'html4strict',
+                                 \ 'java':        'java',
+                                 \ 'javascript':  'javascript',
+                                 \ 'perl':        'perl',
+                                 \ 'php':         'php',
+                                 \ 'python':      'python',
+                                 \ 'ruby':        'ruby',
+                                 \
+                                 \ 'default':     'text' }
 
 let g:PASTER_TEXT_AREA       = 'code2'
 let g:PASTER_URI             = 'http://eugeneciurana.com/pastebin/'
